@@ -1,0 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null) return head;  //只要取名head就会默认指向第一个元素？？那为什么还要单独定义？？
+        ListNode pre=head;
+        ListNode cur=head;
+        //ListNode back=dummy;
+        int n=1;
+        while(pre.next!=null)
+        {pre=pre.next;
+            ++n;           //计算长度  长度+1因为head也参与rotate //n++？
+        }
+        k=k%n; //要考虑k>n的情况
+        if(k==0) return head;
+        for(int i=0;i<n-k-1;++i)
+        cur=cur.next;
+    
+        ListNode newHead=cur.next;
+        cur.next=null;
+        pre.next=head;
+    
+        return newHead;  //最终会有两个head?
+    }
+}
